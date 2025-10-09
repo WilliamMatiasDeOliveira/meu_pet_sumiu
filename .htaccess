@@ -1,0 +1,12 @@
+# Ativa a reescrita de URL
+RewriteEngine On
+
+# Base do seu projeto
+RewriteBase /meu_pet_sumiu/
+
+# Se o arquivo ou diretório existir, serve normalmente
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redireciona tudo para index.php
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
