@@ -19,4 +19,10 @@ switch($route){
     case "/create_account_submit":
         UserController::create_account_submit();
         break;
+    case "/dashboard":
+        echo "dashboard";
+        break;
+    case "page404":
+        echo "erro na inserção";
+        break;
 }

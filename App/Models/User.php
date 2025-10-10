@@ -6,7 +6,7 @@ class User
 {
 
     public function __construct(
-        private int $id = "",
+        // private int $id = "",
         private string $nome = "",
         private string $email = "",
         private string $senha = "",
@@ -14,10 +14,10 @@ class User
     ) {}
 
     // getters and setters
-    public function getId(): int
-    {
-        return $this->id;
-    }   
+    // public function getId(): int
+    // {
+    //     return $this->id;
+    // }   
     public function getNome(): string
     {
         return $this->nome;
@@ -40,7 +40,7 @@ class User
     }
     public function setSenha(string $senha): void
     {
-        $this->senha = $senha;
+        $this->senha = password_hash($senha, PASSWORD_DEFAULT);
     }
     public function getCelular(): string
     {

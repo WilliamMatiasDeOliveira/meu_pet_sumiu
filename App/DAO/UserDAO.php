@@ -2,24 +2,41 @@
 
 namespace App\DAO;
 
+use App\Models\User;
 use PDO;
 
-class UserDAO extends Connection{
+class UserDAO extends Connection
+{
 
-    public function verify_create_account($email){
+    public function verify_email($email)
+    {
+
         $sql = "SELECT * FROM usuarios WHERE email = :email";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":email", $email);
         $stmt->execute();
-        
-        if($stmt->rowCount() > 0){
-            return false;
-        } else {
+
+        if ($stmt->rowCount() > 0) {
             return true;
+        } else {
+            return false;
         }
     }
 
-    public function create_user(User $user){
-        
+    public function create(User $user)
+    {
+        $sql = "INSERT INTO usuarios (nome, email, senha, celular)VALUES
+                                    (:nome, :email, :senha, :celular)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(":nome", $user->getNome());
+        $stmt->bindValue(":email", $user->getEmail());
+        $stmt->bindValue(":senha", $user->getSenha());
+        $stmt->bindValue(":celular", $user->getCelular());
+        $stmt->execute();
+        if($stmt->rowCount() > 0){
+            return true;
+        } else {
+            return false;
+        }
     }
 }
