@@ -21,6 +21,8 @@ class UserDAO extends Connection
         } else {
             return false;
         }
+
+        $this->conn = null;
     }
 
     public function create(User $user)
@@ -38,6 +40,8 @@ class UserDAO extends Connection
         } else {
             return false;
         }
+
+        $this->conn = null;
     }
 
     public function login($email, $password)
@@ -58,6 +62,7 @@ class UserDAO extends Connection
             return false;
         }
 
+        $this->conn = null;
         return $res;
     }
 }

@@ -7,6 +7,7 @@ $route = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $route = str_replace("/meu_pet_sumiu", "", $route);
 
 switch ($route) {
+    case "/home":
     case "/":
         MainController::home();
         break;
@@ -15,6 +16,9 @@ switch ($route) {
         break;
     case "/login_submit":
         UserController::login_submit();
+        break;
+    case "/logout":
+        UserController::logout();
         break;
     case "/create_account":
         MainController::create_account();

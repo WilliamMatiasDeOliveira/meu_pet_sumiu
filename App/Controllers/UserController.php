@@ -90,8 +90,17 @@ class UserController
             exit;
         }
 
+        session_start();
         $_SESSION['auth'] = $auth;
+
         header("Location: /meu_pet_sumiu/dashboard");
+        exit;
+    }
+
+    public static function logout(){
+        session_start();
+        unset($_SESSION['auth']);
+        header("Location: /meu_pet_sumiu/home");
         exit;
     }
 }

@@ -1,3 +1,9 @@
+<?php
+if (isset($_SESSION['auth'])) {
+    $auth = $_SESSION['auth'];
+}
+?>
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="/meu_pet_sumiu">Meu Pet Sumiu</a>
@@ -18,5 +24,18 @@
 
             </ul>
         </div>
+
+        <?php if (isset($auth)): ?>
+            <div class="auth-info d-flex justify-content-around align-items-center col-5">
+                <div class="user-name">
+                    <strong>Usuario:</strong> <?= $auth['email'] ?>
+                </div>
+                <div class="logout">
+                    <form action="/meu_pet_sumiu/logout" method="post">
+                        <input type="submit"value="LOGOUT"class="btn btn-danger">
+                    </form>
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
 </nav>
