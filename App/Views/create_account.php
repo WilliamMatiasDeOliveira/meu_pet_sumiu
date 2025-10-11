@@ -7,19 +7,27 @@ if (isset($_SESSION['error'])) {
     $error = $_SESSION['error'];
     unset($_SESSION['error']);
 }
-
-
+if(isset($_SESSION['fail_create'])){
+    $fail_create = $_SESSION['fail_create'];
+    unset($_SESSION['fail_create']);
+}
 ?>
 
 <div class="container">
     <div class="row justify-content-center mt-5">
         <div class="col-5">
 
+            <?php if(isset($fail_create)): ?>
+                <div class="alert alert-danger text-center">
+                    <?= $fail_create ?>
+                </div>
+            <?php endif; ?>
+
             <h1 class="text-center">Create Account</h1>
 
             <!-- Se o email que esta tentando criar a conta já estiver cadastrado mostra a menssagem -->
             <?php if (!empty($error['email_exists'])): ?>
-                <div class="alert alert-danger">
+                <div class="alert alert-danger text-center">
                     <?= $error['email_exists'] ?>
                 </div>
             <?php endif; ?>

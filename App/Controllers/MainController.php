@@ -8,6 +8,10 @@ class MainController{
         require_once VIEWS."/home.php";
     }
 
+    public static function dashboard(){
+        require_once VIEWS."/dashboard.php";
+    }
+
     public static function login(){
         require_once VIEWS."/login.php";
     }

@@ -33,10 +33,31 @@ class UserDAO extends Connection
         $stmt->bindValue(":senha", $user->getSenha());
         $stmt->bindValue(":celular", $user->getCelular());
         $stmt->execute();
-        if($stmt->rowCount() > 0){
+        if ($stmt->rowCount() > 0) {
             return true;
         } else {
             return false;
         }
+    }
+
+    public function login($email, $password)
+    {
+        $sql = "SELECT * FROM usuarios WHERE email = :email";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(":email", $email);
+        $stmt->execute();
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($stmt->rowCount() <= 0) {
+            return false;
+        }
+
+        $password_verify = password_verify($password, $res['senha']);
+
+        if (!$password_verify) {
+            return false;
+        }
+
+        return $res;
     }
 }

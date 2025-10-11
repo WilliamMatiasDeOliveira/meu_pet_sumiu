@@ -50,5 +50,4 @@ class User
     {
         $this->celular = $celular;
     }
-
 }
